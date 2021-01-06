@@ -1,6 +1,6 @@
 {
   "name": "my-helper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple app to help the workflow",
   "repository": "https://github.com/mbetim/my-helper",
   "main": "build/index.js",
