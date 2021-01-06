@@ -1,6 +1,6 @@
 {
   "name": "my-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple app to help the workflow",
   "repository": "https://github.com/mbetim/my-helper",
   "main": "build/index.js",
@@ -16,7 +16,7 @@
   "author": "Matheus Betim",
   "license": "ISC",
   "build": {
-    "appId": "my.helper.id",
+    "appId": "com.github.mbetim.my-helper",
     "productName": "My helper",
     "files": [
       "build/",
@@ -40,7 +40,9 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
+    "electron-log": "^4.3.1",
     "electron-store": "^6.0.1",
+    "electron-updater": "^4.3.5",
     "node-powershell": "^4.0.0"
   }
 }

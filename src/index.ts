@@ -1,5 +1,7 @@
 import { app, dialog, Menu, shell, Tray } from "electron";
 import ElectronStore from "electron-store";
+import { autoUpdater } from "electron-updater";
+import log from "electron-log";
 import Path from "path";
 import { spawn } from "child_process";
 
@@ -7,7 +9,11 @@ interface Store {
   codeProjects: { name: string; path: string }[];
 }
 
-let tray: Tray | null = null;
+autoUpdater.logger = log;
+log.info("App starting...");
+
+let tray: Tray | null;
+
 const store = new ElectronStore<Store>({
   schema: {
     codeProjects: { type: "array", default: [] },
@@ -44,7 +50,6 @@ const removeCodeProject = (index: number) => {
 
 const renderTray = () => {
   if (!tray) return;
-  console.log("Rendering Tray");
 
   const codeProjects = store.get("codeProjects");
 
@@ -73,8 +78,14 @@ const renderTray = () => {
   tray.setContextMenu(contextMenu);
 };
 
+autoUpdater.on("checking-for-update", () => log.info("Checking for updates..."));
+autoUpdater.on("update-available", () => log.info("Update available"));
+autoUpdater.on("update-not-available", () => log.info("Update not available"));
+autoUpdater.on("update-downloaded", () => log.info("Update downloaded"));
+
 app.on("ready", () => {
-  console.log("App ready");
+  log.info("App started", `App version: ${app.getVersion()}`);
+  autoUpdater.checkForUpdatesAndNotify();
 
   tray = new Tray(Path.resolve(__dirname, "assets", "icon.png"));
   renderTray();
