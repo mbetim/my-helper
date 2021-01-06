@@ -80,14 +80,13 @@ const renderTray = () => {
   tray.setContextMenu(contextMenu);
 };
 
-autoUpdater.on("checking-for-update", () => log.info("Checking for updates..."));
-autoUpdater.on("update-available", () => log.info("Update available"));
-autoUpdater.on("update-not-available", () => log.info("Update not available"));
-autoUpdater.on("update-downloaded", () => log.info("Update downloaded"));
+autoUpdater.on("update-downloaded", () => {
+  autoUpdater.quitAndInstall(true, true);
+});
 
 app.on("ready", () => {
   log.info("App started", `App version: ${app.getVersion()}`);
-  autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdates();
 
   tray = new Tray(Path.resolve(__dirname, "assets", "icon.png"));
   renderTray();
