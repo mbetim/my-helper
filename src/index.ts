@@ -71,6 +71,8 @@ const renderTray = () => {
     })),
     { label: "Add a project", click: addCodeProject },
     { type: "separator" },
+    { label: `App version: ${app.getVersion()}`, enabled: false },
+    { label: "About", role: "about" },
     { role: "quit" },
   ]);
 
