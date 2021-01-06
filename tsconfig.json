@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es6", "es2019"],
+    "allowJs": true,
+    "removeComments": true,
+    "typeRoots": ["./node_modules/@types", "/src/@types"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "build"
+  }
+}
