@@ -1,19 +1,42 @@
 {
-  "name": "ts-electron",
+  "name": "my-helper",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple app to help the workflow",
+  "repository": "https://github.com/mbetim/my-helper",
   "main": "build/index.js",
   "scripts": {
     "compile": "tsc && copyfiles -f src/assets/* build/assets",
-    "start": "yarn compile && electron ."
+    "start": "yarn compile && electron .",
+    "dist": "yarn compile && electron-builder",
+    "dist:windows": "yarn compile && electron-builder --windows",
+    "postinstall": "electron-builder install-app-deps",
+    "publish": "yarn compile && electron-builder --windows --publish always"
   },
   "keywords": [],
-  "author": "",
+  "author": "Matheus Betim",
   "license": "ISC",
+  "build": {
+    "appId": "my.helper.id",
+    "productName": "My helper",
+    "files": [
+      "build/",
+      "node_modules",
+      "package.json"
+    ],
+    "publish": [
+      "github"
+    ],
+    "win": {
+      "publish": [
+        "github"
+      ]
+    }
+  },
   "devDependencies": {
     "@types/node-powershell": "^3.1.1",
     "copyfiles": "^2.4.1",
     "electron": "^11.1.1",
+    "electron-builder": "^22.9.1",
     "typescript": "^4.1.3"
   },
   "dependencies": {
